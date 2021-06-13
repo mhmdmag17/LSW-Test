@@ -37,7 +37,7 @@ public class DialogueManager : MonoBehaviour {
 			sentences.Enqueue(sentence);
 		}
 question = null;
-        if (dialogue.question != null)
+        if (!dialogue.question.Equals(""))
 question = dialogue.question;
 
 		DisplayNextSentence();
@@ -71,10 +71,12 @@ question = dialogue.question;
 	{
        
 		panel.SetActive(false);
-        if(question != null){
+        if(question.text.Length > 0){
 questionText.text = question.text;
             questionpanel.SetActive(true);
-        }
+        }else{
+			Player_Controller.Instance.ReanbleCanMove();
+		}
 	}
     
 

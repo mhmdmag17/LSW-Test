@@ -6,7 +6,7 @@ public class IntraeactWithWorld : MonoBehaviour
 {
     [SerializeField]Transform intreactCheckpos;
      [SerializeField] bool inRange;
-     Collider2D collider;
+     Collider2D objCollider;
     [SerializeField] GameObject intreact;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class IntraeactWithWorld : MonoBehaviour
      if(inRange &&  Input.GetKeyDown(KeyCode.E))
         {
               intreact.SetActive(false);
-            collider.gameObject.GetComponent<IInteractable>().OpenUI();
+            objCollider.gameObject.GetComponent<IInteractable>().OpenUI();
             GetComponent<Player_Controller>().canMove = false;
         }
     }
@@ -31,7 +31,7 @@ public class IntraeactWithWorld : MonoBehaviour
       {
           intreact.SetActive(true);
       inRange = true;
-        collider = coll;
+        objCollider = coll;
         }
     }
      void OnTriggerExit2D(Collider2D coll)
@@ -40,7 +40,7 @@ public class IntraeactWithWorld : MonoBehaviour
            intreact.SetActive(false);
       inRange = false;
         coll.gameObject.GetComponent<IInteractable>().CloseUI();
-         collider = null;
+         objCollider = null;
       }
     }
 }

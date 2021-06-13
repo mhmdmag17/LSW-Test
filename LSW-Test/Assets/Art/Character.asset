@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: Character
+  m_EditorClassIdentifier: 
+  m_Labels:
+  - m_Name: Head
+    m_Hash: 130111906
+    m_CategoryList:
+    - m_Name: IDle
+      m_Hash: 1146838219
+      m_Sprite: {fileID: -805097472376019611, guid: b55be30bebae80e488061636848683e4, type: 3}
+    - m_Name: Back
+      m_Hash: -839094775
+      m_Sprite: {fileID: 5756101434343223997, guid: b55be30bebae80e488061636848683e4, type: 3}
+    - m_Name: Right
+      m_Hash: 1963678224
+      m_Sprite: {fileID: -7619031578501214414, guid: b55be30bebae80e488061636848683e4, type: 3}
+  - m_Name: Green Shirt
+    m_Hash: -1194031978
+    m_CategoryList:
+    - m_Name: Forward
+      m_Hash: 673977882
+      m_Sprite: {fileID: 2642109435518605924, guid: b55be30bebae80e488061636848683e4, type: 3}
+    - m_Name: Side
+      m_Hash: -2085374837
+      m_Sprite: {fileID: -6211864793364081930, guid: b55be30bebae80e488061636848683e4, type: 3}
+  - m_Name: Yellow Shirt
+    m_Hash: 568747851
+    m_CategoryList:
+    - m_Name: Forward
+      m_Hash: 673977882
+      m_Sprite: {fileID: 7566583126990785104, guid: a040902955ce5ad4899dcd6e4c398db3, type: 3}
+    - m_Name: Side
+      m_Hash: -2085374837
+      m_Sprite: {fileID: -3789583068727032843, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+  - m_Name: Cyan Shirt
+    m_Hash: -2044393479
+    m_CategoryList:
+    - m_Name: Forward
+      m_Hash: 673977882
+      m_Sprite: {fileID: -3134676255913434260, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+    - m_Name: Side
+      m_Hash: -2085374837
+      m_Sprite: {fileID: 1865923023914297918, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+  - m_Name: Blue Shirt
+    m_Hash: 1967522002
+    m_CategoryList:
+    - m_Name: Forward
+      m_Hash: 673977882
+      m_Sprite: {fileID: -2625428591776394523, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+    - m_Name: Side
+      m_Hash: -2085374837
+      m_Sprite: {fileID: -7770280803707792207, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+  - m_Name: Brown Shirt
+    m_Hash: 1647547420
+    m_CategoryList:
+    - m_Name: Forward
+      m_Hash: 673977882
+      m_Sprite: {fileID: 6375929492069197853, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+    - m_Name: Side
+      m_Hash: -2085374837
+      m_Sprite: {fileID: -7534739892405068841, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+  - m_Name: Green Pants
+    m_Hash: 1326290284
+    m_CategoryList:
+    - m_Name: Side
+      m_Hash: -2085374837
+      m_Sprite: {fileID: -3630064315862103290, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+    - m_Name: Forward
+      m_Hash: 673977882
+      m_Sprite: {fileID: 2085807491316728793, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+  - m_Name: Brown pants
+    m_Hash: 1412147938
+    m_CategoryList:
+    - m_Name: Side
+      m_Hash: -2085374837
+      m_Sprite: {fileID: 8798653420816735933, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+    - m_Name: Forward
+      m_Hash: 673977882
+      m_Sprite: {fileID: -3935567166815858915, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+  - m_Name: Red Pants
+    m_Hash: 560765874
+    m_CategoryList:
+    - m_Name: Side
+      m_Hash: -2085374837
+      m_Sprite: {fileID: 5836115441793006593, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+    - m_Name: Forward
+      m_Hash: 673977882
+      m_Sprite: {fileID: 647208052618628397, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+  - m_Name: Dark Green Pants
+    m_Hash: 867271246
+    m_CategoryList:
+    - m_Name: Side
+      m_Hash: -2085374837
+      m_Sprite: {fileID: 680336138253220938, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+    - m_Name: Forward
+      m_Hash: 673977882
+      m_Sprite: {fileID: 3833905379153703981, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
+  - m_Name: Blue Pants
+    m_Hash: -2103504600
+    m_CategoryList:
+    - m_Name: Side
+      m_Hash: -2085374837
+      m_Sprite: {fileID: 8092590208313566827, guid: b55be30bebae80e488061636848683e4, type: 3}
+    - m_Name: Forward
+      m_Hash: 673977882
+      m_Sprite: {fileID: 6934587047025000567, guid: b55be30bebae80e488061636848683e4, type: 3}

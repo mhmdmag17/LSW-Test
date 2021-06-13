@@ -3,9 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Experimental.U2D.Animation;
+using UnityEngine.U2D;
+using System.Linq;
 
 public class Player_Controller : MonoBehaviour
 {
+    private static Player_Controller _instance;
+
+    public static Player_Controller Instance { get { return _instance; } }
    
     Rigidbody2D rb;
 
@@ -19,6 +25,18 @@ public class Player_Controller : MonoBehaviour
      Animator anim;
 
   
+    [SerializeField]
+  private SpriteLibrary spriteLibrary ;
+
+  [SerializeField]
+  private SpriteResolver targetResolver ;
+
+ 
+
+   
+
+     
+     public string referenceCatogrey;
     // public GameObject exit;
 
     // public Sprite canPressExit;
@@ -36,6 +54,15 @@ public class Player_Controller : MonoBehaviour
    
   //  [SerializeField] AudioSource movementAudio;
 
+private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        } else {
+            _instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +73,10 @@ public class Player_Controller : MonoBehaviour
         canMove = true;
       
         //movementAudio = GetComponent<AudioSource>();
-
+ 
+  
+    referenceCatogrey = targetResolver.GetCategory();
+  
     }
 
     // Update is called once per frame
@@ -56,10 +86,24 @@ public class Player_Controller : MonoBehaviour
            horizontal = Input.GetAxisRaw("Horizontal");
            vertical = Input.GetAxisRaw("Vertical"); 
             Vector2 movement = new Vector2(horizontal,vertical);
-            anim.SetFloat("Horizontal", horizontal);
+
+            if(canMove)
+            {
+            if(horizontal != 0 && !targetResolver.GetLabel().Equals("Side"))
+             targetResolver.SetCategoryAndLabel(referenceCatogrey, "Side");
+            else if(horizontal == 0 &&!targetResolver.GetLabel().Equals("Forward"))
+            targetResolver.SetCategoryAndLabel(referenceCatogrey, "Forward");
+            
+            if(horizontal !=0 && vertical !=0 )
+               anim.SetFloat("Vertical", 0);
+               else
             anim.SetFloat("Vertical", vertical);
+
+            anim.SetFloat("Horizontal", horizontal);
             anim.SetFloat("Speed", movement.sqrMagnitude);
-           
+           }else{
+                anim.SetFloat("Speed", 0);
+           }
 
         //     if (canMove)
         // {
