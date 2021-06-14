@@ -20,16 +20,7 @@ public class GameManager : MonoBehaviour
         canMove = true;
     }
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     public   void EnableMoving()
     {
         canMove = true;
@@ -37,5 +28,11 @@ public class GameManager : MonoBehaviour
     public   void DisableMoving()
     {
         canMove = false;
+    }
+
+    void Update(){
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        Application.Quit();
     }
 }

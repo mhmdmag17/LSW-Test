@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿
 
 namespace ShopSystem
 {
@@ -17,7 +17,7 @@ namespace ShopSystem
          public bool isEquiped;          //bool to check Equiped status
         public int cost;              //cost of unlock
        
-      public enum partType {Top, Pants, Shoes};
+      public enum partType {Top, Pants};
       public partType type;
     }
 

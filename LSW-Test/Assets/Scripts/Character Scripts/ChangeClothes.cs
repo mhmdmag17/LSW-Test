@@ -20,8 +20,8 @@ private static ChangeClothes _instance;
 
   [SerializeField]
   private SpriteResolver legsTargetResolver ;
-  [SerializeField]
-  private SpriteResolver shoesTargetResolver ;
+
+ 
 
 
  private void Awake()
@@ -45,10 +45,7 @@ private static ChangeClothes _instance;
     legsTargetResolver.SetCategoryAndLabel(targetCategory, label);
 
         break; 
-            case "Shoes":
-    shoesTargetResolver.SetCategoryAndLabel(targetCategory, label);
-
-        break; 
+        
         
         default:
         return;

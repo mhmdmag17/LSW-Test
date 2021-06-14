@@ -1319,7 +1319,7 @@ MonoBehaviour:
   - {fileID: 222354534}
   - {fileID: 1900567571}
   m_Bounds:
-    m_Center: {x: 0.0014483333, y: 0.0008430481, z: 0}
+    m_Center: {x: 0.0014473498, y: 0.0008431077, z: 0}
     m_Extent: {x: 0.32604712, y: 0.29525352, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -4312,7 +4312,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 50.53, y: 5856.296}
+  m_AnchoredPosition: {x: 50.53, y: 24282.66}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &462318398
@@ -9532,7 +9532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.910619, y: -2.2584112, z: -10}
+  m_LocalPosition: {x: -1.0530643, y: 0.26060134, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15672,7 +15672,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1756541992}
   m_Bounds:
-    m_Center: {x: -0.19820565, y: 0.9906853, z: 0}
+    m_Center: {x: -0.1982066, y: 0.99068564, z: 0}
     m_Extent: {x: 0.64146876, y: 0.7266062, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -16134,8 +16134,8 @@ MonoBehaviour:
   - {fileID: 1224775588}
   - {fileID: 665444496}
   m_Bounds:
-    m_Center: {x: 0.380381, y: -0.18330616, z: 0}
-    m_Extent: {x: 0.12294628, y: 0.39708263, z: 0}
+    m_Center: {x: 0.38037932, y: -0.18330592, z: 0}
+    m_Extent: {x: 0.122946516, y: 0.39708263, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!212 &1065639290
@@ -16332,7 +16332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087691388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.25, y: -4.92, z: -10}
+  m_LocalPosition: {x: 4.38, y: 0.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1752419077}
@@ -19495,8 +19495,8 @@ MonoBehaviour:
   - {fileID: 1998920196}
   - {fileID: 4381975}
   m_Bounds:
-    m_Center: {x: 0.012492031, y: -0.61949265, z: 0}
-    m_Extent: {x: 0.3311844, y: 0.32707098, z: 0}
+    m_Center: {x: 0.012491554, y: -0.61949223, z: 0}
+    m_Extent: {x: 0.3311839, y: 0.32707083, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!212 &1511528308
@@ -19875,7 +19875,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534591354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.25, y: -4.92, z: 0}
+  m_LocalPosition: {x: 4.38, y: 0.3, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 1706340389}
@@ -19998,7 +19998,6 @@ MonoBehaviour:
   spriteLibrary: {fileID: 81175279}
   bodyTargetResolver: {fileID: 81175280}
   legsTargetResolver: {fileID: 1511528309}
-  shoesTargetResolver: {fileID: 1008552635}
 --- !u!4 &1553601790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6026985622314482428, guid: 1cf7b93fbee79024189ee8976c4edc3e, type: 3}
@@ -20709,8 +20708,8 @@ MonoBehaviour:
   - {fileID: 757156717}
   - {fileID: 1826241862}
   m_Bounds:
-    m_Center: {x: -0.3074805, y: -0.15774417, z: 0}
-    m_Extent: {x: 0.10183604, y: 0.38878536, z: 0}
+    m_Center: {x: -0.3074805, y: -0.15774369, z: 0}
+    m_Extent: {x: 0.101835564, y: 0.38878536, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!212 &1638759230

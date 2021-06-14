@@ -88,7 +88,7 @@ public class ClothShopUI : MonoBehaviour
      void Equip(int id){
         
                 //Change the Part sprite
-                Debug.Log(shopData.shopItems[id].type);
+                
                  ChangeClothes.Instance.ChangOutFit(shopData.shopItems[id].type.ToString(),shopData.shopItems[id].itemName,"Forward");
                  shopData.shopItems[id].isEquiped = true;
                    
