@@ -39,7 +39,7 @@ MonoBehaviour:
     m_CategoryList:
     - m_Name: Forward
       m_Hash: 673977882
-      m_Sprite: {fileID: 7566583126990785104, guid: a040902955ce5ad4899dcd6e4c398db3, type: 3}
+      m_Sprite: {fileID: -7788979350800259502, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}
     - m_Name: Side
       m_Hash: -2085374837
       m_Sprite: {fileID: -3789583068727032843, guid: 76b7c693467bc714e82173e5033e63dc, type: 3}

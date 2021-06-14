@@ -29,6 +29,15 @@ public class Player_Controller : MonoBehaviour
 
 
  public string referenceCatogrey;
+
+
+
+
+  [SerializeField]
+  private SpriteResolver legstargetResolver ;
+
+
+ public string legsreferenceCatogrey;
     
   public Tilemap tilemap;
   public Tile[] grassTiles;
@@ -114,9 +123,15 @@ public class Player_Controller : MonoBehaviour
         if (GameManager.Instance.canMove)
         {
             if (horizontal != 0 && !targetResolver.GetLabel().Equals("Side"))
+            {
+                  legstargetResolver.SetCategoryAndLabel(legsreferenceCatogrey, "Side");
                 targetResolver.SetCategoryAndLabel(referenceCatogrey, "Side");
+            }
             else if (horizontal == 0 && !targetResolver.GetLabel().Equals("Forward"))
+            {
+                legstargetResolver.SetCategoryAndLabel(legsreferenceCatogrey, "Forward");
                 targetResolver.SetCategoryAndLabel(referenceCatogrey, "Forward");
+            }
 
 
             if (horizontal != 0 && vertical != 0)

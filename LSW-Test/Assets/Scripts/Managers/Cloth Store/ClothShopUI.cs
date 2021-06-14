@@ -97,7 +97,11 @@ public class ClothShopUI : MonoBehaviour
                  {
                      if ( shopData.shopItems[i].type == shopData.shopItems[id].type && i != id )
                      {
+                             
                               shopData.shopItems[i].isEquiped = false;
+                              if(shopData.shopItems[i].hasBought)
+                               shopItem[i].buyButtonText.text    = "Equip"; 
+
                      }
                      
                  }

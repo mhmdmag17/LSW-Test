@@ -4312,7 +4312,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 50.53, y: 24282.66}
+  m_AnchoredPosition: {x: 50.53, y: 48516.906}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &462318398
@@ -19900,6 +19900,8 @@ MonoBehaviour:
   spriteLibrary: {fileID: 81175279}
   targetResolver: {fileID: 81175280}
   referenceCatogrey: Body
+  legstargetResolver: {fileID: 1511528309}
+  legsreferenceCatogrey: Green Pants
   tilemap: {fileID: 473629406}
   grassTiles:
   - {fileID: 11400000, guid: 4f4701d9c95a37549909d85c5614243b, type: 2}
