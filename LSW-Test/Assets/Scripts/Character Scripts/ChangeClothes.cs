@@ -3,11 +3,11 @@ using System.Linq;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Experimental.U2D.Animation;
-using UnityEngine.U2D;
+
 
 public class ChangeClothes : MonoBehaviour
 {
-    #region Inspector
+    
 
 private static ChangeClothes _instance;
 
@@ -23,20 +23,6 @@ private static ChangeClothes _instance;
   [SerializeField]
   private SpriteResolver shoesTargetResolver ;
 
-  [SerializeField]
-  
-
-  #endregion
-
-
-  #region Properties
-
- 
-
-  #endregion
-
-
-  #region Methods
 
  private void Awake()
     {
@@ -70,7 +56,7 @@ private static ChangeClothes _instance;
   }
 
   
-  #endregion
+
 
   
 }

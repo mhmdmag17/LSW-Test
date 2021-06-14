@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class IntraeactWithWorld : MonoBehaviour
 {
-    [SerializeField]Transform intreactCheckpos;
-     [SerializeField] bool inRange;
+    bool inRange; // TO CHECK IF THERE'S AN INTERACTABLE OBJ IN RANGE
      Collider2D objCollider;
-    [SerializeField] GameObject intreact;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    
+    UI_Manager uI_Manager;
+    GameObject _intraectText;
+    void Start  (){
+      uI_Manager = UI_Manager.Instance;
+      _intraectText = uI_Manager.intreactText;
     }
-
     // Update is called once per frame
     void Update()
     {
      if(inRange &&  Input.GetKeyDown(KeyCode.E))
         {
-              intreact.SetActive(false);
-            objCollider.gameObject.GetComponent<IInteractable>().OpenUI();
-            GetComponent<Player_Controller>().canMove = false;
+              uI_Manager.ScaleDown(_intraectText);
+              objCollider.gameObject.GetComponent<IInteractable>().OpenUI();
+              GameManager.Instance.DisableMoving();
+               Material mat = objCollider.gameObject.GetComponent<SpriteRenderer>().material;
+          mat.SetFloat("_OutlineThickness", 0f);
         }
     }
 
@@ -29,18 +30,22 @@ public class IntraeactWithWorld : MonoBehaviour
     {
       if(coll.gameObject.GetComponent<IInteractable>() != null)
       {
-          intreact.SetActive(true);
-      inRange = true;
-        objCollider = coll;
-        }
+          uI_Manager.ScaleUp(_intraectText);
+          inRange = true;
+          objCollider = coll;
+          Material mat = coll.gameObject.GetComponent<SpriteRenderer>().material;
+          mat.SetFloat("_OutlineThickness", 10f);
+      }
     }
      void OnTriggerExit2D(Collider2D coll)
     {
       if(coll.gameObject.GetComponent<IInteractable>() != null){
-           intreact.SetActive(false);
-      inRange = false;
-        coll.gameObject.GetComponent<IInteractable>().CloseUI();
-         objCollider = null;
+           uI_Manager.ScaleDown(_intraectText);
+           inRange = false;
+           coll.gameObject.GetComponent<IInteractable>().CloseUI();
+           objCollider = null;
+           Material mat = coll.gameObject.GetComponent<SpriteRenderer>().material;
+          mat.SetFloat("_OutlineThickness", 0f);
       }
     }
 }

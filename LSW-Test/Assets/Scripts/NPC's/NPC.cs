@@ -17,6 +17,7 @@ public class NPC : MonoBehaviour, IInteractable
     }
      public void OpenUI(){
       GetComponent<DialogueTrigger>().TriggerDialogue();
+      SFX_Manager.Instance.PopSound();
     }
   public void CloseUI(){
         Debug.Log(" Book Shelf Closed");

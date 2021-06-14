@@ -25,6 +25,7 @@ public class ClothShopUI : MonoBehaviour
             _instance = this;
         }
          money = PlayerPrefs.GetInt("Money",10000);
+         UI_Manager.Instance.moneyText.text = money.ToString();
      }
     // Start is called before the first frame update
     void Start()
@@ -73,6 +74,7 @@ public class ClothShopUI : MonoBehaviour
             shopItem[id].itemCost.text   = (shopData.shopItems[id].cost / 2).ToString();
              shopItem[id].buyButtonText.text    = "Equip"; 
               shopItem[id].sellButton.interactable = true;
+              UI_Manager.Instance.moneyText.text = money.ToString();
         }else if(shopData.shopItems[id].hasBought){
                
              Equip(id);
@@ -115,6 +117,7 @@ public class ClothShopUI : MonoBehaviour
                 ClothShop_SavingLoadingData.Instance.SaveData();
               shopItem[id].sellButton.interactable = false;
                     shopItem[id].buyButtonText.text    = "Buy"; 
+                    UI_Manager.Instance.moneyText.text = money.ToString();
         }
         else if(!shopData.shopItems[id].hasBought){
             Debug.Log ("item Hasn't Bought Yet");

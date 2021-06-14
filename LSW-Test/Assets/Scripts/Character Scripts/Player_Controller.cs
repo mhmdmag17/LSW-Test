@@ -6,75 +6,45 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Experimental.U2D.Animation;
 using UnityEngine.U2D;
 using System.Linq;
+using UnityEngine.Tilemaps;
 
 public class Player_Controller : MonoBehaviour
 {
-    private static Player_Controller _instance;
-
-    public static Player_Controller Instance { get { return _instance; } }
-   
+    
     Rigidbody2D rb;
 
     float horizontal;
     float vertical;
-
     [SerializeField] float speed;
     [SerializeField] float diagonalMoveLimit;
 
 
      Animator anim;
 
-  
     [SerializeField]
   private SpriteLibrary spriteLibrary ;
 
   [SerializeField]
   private SpriteResolver targetResolver ;
 
- 
 
-   
-
-     
-     public string referenceCatogrey;
-    // public GameObject exit;
-
-    // public Sprite canPressExit;
-    // public Sprite canNotPressExit;
-
-   
-    // public GameObject exitAnim;
-   
-  
-
+ public string referenceCatogrey;
     
-  public   bool canMove = true;
-    
-
+  public Tilemap tilemap;
+  public Tile[] grassTiles;
+  public Tile[] rockRoadTiles;
+   public Tile[] woodTiles;
+  int tileNum;
    
-  //  [SerializeField] AudioSource movementAudio;
 
-private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        } else {
-            _instance = this;
-        }
-    }
+
     // Start is called before the first frame update
     void Start()
     {
-       
-       
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        canMove = true;
+     rb = GetComponent<Rigidbody2D>();
+    anim = GetComponent<Animator>();
       
-        //movementAudio = GetComponent<AudioSource>();
- 
-  
+     //movementAudio = GetComponent<AudioSource>();
     referenceCatogrey = targetResolver.GetCategory();
   
     }
@@ -82,218 +52,107 @@ private void Awake()
     // Update is called once per frame
     void Update()
     {
-       
-           horizontal = Input.GetAxisRaw("Horizontal");
-           vertical = Input.GetAxisRaw("Vertical"); 
-            Vector2 movement = new Vector2(horizontal,vertical);
+        Vector2 movement = HandleInput();
 
-            if(canMove)
+        HandleAnimation(movement);
+        Vector3Int tilepos = tilemap.WorldToCell(transform.position);
+        Tile tileatpos = tilemap.GetTile<Tile>(tilepos);
+
+        HandleSounds(movement, tileatpos);
+    }
+
+    private void HandleSounds(Vector2 movement, Tile tileatpos)
+    {
+        if (movement.sqrMagnitude > 0 && GameManager.Instance.canMove )
+        {
+            if (grassTiles.Contains<Tile>(tileatpos))
             {
-            if(horizontal != 0 && !targetResolver.GetLabel().Equals("Side"))
-             targetResolver.SetCategoryAndLabel(referenceCatogrey, "Side");
-            else if(horizontal == 0 &&!targetResolver.GetLabel().Equals("Forward"))
-            targetResolver.SetCategoryAndLabel(referenceCatogrey, "Forward");
-            
-            if(horizontal !=0 && vertical !=0 )
-               anim.SetFloat("Vertical", 0);
-               else
-            anim.SetFloat("Vertical", vertical);
+
+                tileNum = 1;
+                if (!SFX_Manager.Instance.movementAudios[0].isPlaying)
+                {
+                    SFX_Manager.Instance.movementAudios[0].pitch = Random.Range(0.9f, 1.1f);
+                    SFX_Manager.Instance.movementAudios[0].Play();
+                }
+            }
+            else if (rockRoadTiles.Contains<Tile>(tileatpos))
+            {
+                tileNum = 2;
+                if (!SFX_Manager.Instance.movementAudios[1].isPlaying)
+                {
+                    SFX_Manager.Instance.movementAudios[1].pitch = Random.Range(0.9f, 1.1f);
+                    SFX_Manager.Instance.movementAudios[1].Play();
+                }
+            }
+            else if (woodTiles.Contains<Tile>(tileatpos))
+            {
+                tileNum = 3;
+                if (!SFX_Manager.Instance.movementAudios[2].isPlaying)
+                {
+                    SFX_Manager.Instance.movementAudios[2].pitch = Random.Range(0.9f, 1.1f);
+                    SFX_Manager.Instance.movementAudios[2].Play();
+                }
+            }
+
+
+
+
+
+        }
+    }
+
+    private Vector2 HandleInput()
+    {
+        horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Vertical");
+        Vector2 movement = new Vector2(horizontal, vertical);
+        return movement;
+    }
+
+    private void HandleAnimation(Vector2 movement)
+    {
+        if (GameManager.Instance.canMove)
+        {
+            if (horizontal != 0 && !targetResolver.GetLabel().Equals("Side"))
+                targetResolver.SetCategoryAndLabel(referenceCatogrey, "Side");
+            else if (horizontal == 0 && !targetResolver.GetLabel().Equals("Forward"))
+                targetResolver.SetCategoryAndLabel(referenceCatogrey, "Forward");
+
+
+            if (horizontal != 0 && vertical != 0)
+                anim.SetFloat("Vertical", 0);
+            else
+                anim.SetFloat("Vertical", vertical);
 
             anim.SetFloat("Horizontal", horizontal);
             anim.SetFloat("Speed", movement.sqrMagnitude);
-           }else{
-                anim.SetFloat("Speed", 0);
-           }
-
-        //     if (canMove)
-        // {
-        //     // joystick.gameObject.SetActive(true);
-
-        //     // if (joystick.Horizontal >= .2f)
-        //     // {
-        //         x = speed;
-        //         y = 0;
-        //         player_MAnager.SetHairSpriteRendrer(1);
-        //         player_MAnager.SetFaceSpriteRendrer(1);
-
-        //     }
-        //     else if (joystick.Horizontal <= -.2f)
-        //     {
-        //         x = -speed;
-        //         y = 0;
-        //         player_MAnager.SetHairSpriteRendrer(-1);
-        //         player_MAnager.SetFaceSpriteRendrer(-1);
-        //     }
-        //     else
-        //     {
-        //         x = 0;
-               
-
-        //     }
-
-        //     if (joystick.Vertical >= .2f)
-        //     {
-        //         y = speed;
-        //         x = 0;
-        //         player_MAnager.SetHairSpriteRendrer(2);
-        //         player_MAnager.SetFaceSpriteRendrer(2);
-        //     }
-        //     else if (joystick.Vertical <= -.2f)
-        //     {
-        //         y = -speed;
-        //         x = 0;
-        //         player_MAnager.SetHairSpriteRendrer(-2);
-        //         player_MAnager.SetFaceSpriteRendrer(-2);
-        //     }
-        //     else
-        //     {
-        //         y = 0;
-             
-        //     }
-        //     if(x == 0 && y == 0)
-        //     {
-        //         player_MAnager.SetHairSpriteRendrer(-2);
-        //         player_MAnager.SetFaceSpriteRendrer(-2);
-        //     }
-
-          
-    //         anim.SetFloat("H", x);
-    //         anim.SetFloat("V", y);
-    //         anim.SetFloat("Speed", movement.sqrMagnitude);
-    //         if(movement.sqrMagnitude > 1)
-    //         {
-    //             if (!movementAudio.isPlaying)
-    //             {
-    //                 movementAudio.pitch = Random.Range(0.9f, 1.1f);
-    //                 movementAudio.Play();
-    //             }
-    //         }
-    //         else
-    //         {
-    //             movementAudio.Stop();
-    //         }
-
-    //     }
-    //     else
-    //     {
-    //         joystick.gameObject.SetActive(false);
-    //     }
-
-    // }
-    // private void FixedUpdate()
-    // {
-    //     if (canMove)
-    //     {
-    //         rb.MovePosition(rb.position + new Vector2(x, y) * speed * Time.deltaTime);
-    //     }
-     }
-
-     private void FixedUpdate()
-{  
-if(canMove){
-
-     if (horizontal != 0 && vertical != 0) // Check for diagonal movement
-   {
-      // limit movement speed diagonally
-      horizontal *= diagonalMoveLimit;
-      vertical *= diagonalMoveLimit;
-   }
-
-   rb.velocity = new Vector2(horizontal * speed, vertical * speed) * Time.deltaTime;
-}
-}
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-       /* if (!taskOneFinished)
+        }
+        else
         {
-            if (collision.gameObject.name == ("cabinet"))
+            anim.SetFloat("Speed", 0);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        HandleMovement();
+    }
+
+    private void HandleMovement()
+    {
+        if (GameManager.Instance.canMove)
+        {
+
+            if (horizontal != 0 && vertical != 0) // Check for diagonal movement
             {
-                collision.gameObject.GetComponent<SpriteRenderer>().sprite = openTask[0];
-                task[0].SetActive(true);
+                // limit movement speed diagonally
+                horizontal *= diagonalMoveLimit;
+                vertical *= diagonalMoveLimit;
             }
 
-
-
-            if (collision.tag == "OpenTask")
-            {
-                collision.gameObject.GetComponent<SpriteRenderer>().sprite = openTask[0];
-                blackPanel = GameObject.Find("BlackPanel").GetComponent<CanvasGroup>();
-                gm[0] = collision.gameObject.GetComponentInChildren<Transform>().GetChild(0).gameObject;
-
-            }
+            rb.velocity = new Vector2(horizontal * speed, vertical * speed) * Time.deltaTime;
         }
-
-        if (!taskTwoFinished)
-        {
-            if (collision.gameObject.name == ("cabinet (1)"))
-            {
-                collision.gameObject.GetComponent<SpriteRenderer>().sprite = openTask[1];
-                task[1].SetActive(true);
-            }
-        }*/
-        // if (collision.tag == "Exit")
-        // {
-        //     collision.gameObject.GetComponent<SpriteRenderer>().sprite = canPressExit;
-        //     exit.SetActive(true);
-        // }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-       
-
-       /* if (collision.gameObject.name == ("cabinet"))
-        {
-            collision.gameObject.GetComponent<SpriteRenderer>().sprite = cantopenTask[0];
-            task[0].SetActive(false);
-        }
-        if (collision.gameObject.name == ("cabinet (1)"))
-        {
-            collision.gameObject.GetComponent<SpriteRenderer>().sprite = cantopenTask[1];
-            task[1].SetActive(false);
-        }
-*/
-       
-
-        // if (collision.tag == "Exit")
-        // {
-        //     collision.gameObject.GetComponent<SpriteRenderer>().sprite = canNotPressExit;
-        //     exit.SetActive(false);
-        // }
     }
 
-  /*  public void OpenTask()
-    {
-       
-        blackPanel.gameObject.SetActive(true);
-        LeanTween.alphaCanvas(blackPanel, 1, 0.5f).setDelay(0.1f).setEase(LeanTweenType.easeInCirc);
-        LeanTween.scale(gm[0], new Vector3(1, 1, 1), 0.5f).setEase(LeanTweenType.easeInExpo);
-        canMove = false;
-    }*/
-
-  
-    public void OpenExitPanel()
-    {
-        // if(GameManager.TasksCount >= 1) 
-        // LeanTween.scale(exitAnim, new Vector3(0.75f, 0.75f, 1), 0.5f).setEase(LeanTweenType.easeSpring);
-        // else if(GameManager.TasksCount <= 0)
-        //     Events.ScoreEvent.Invoke();
-
-        // canMove = false;
-    }
-    public void CloseExitPanel()
-    {
-        //LeanTween.scale(exitAnim, new Vector3(0, 0, 0), 0.5f).setEase(LeanTweenType.easeInExpo);
-        canMove = true;
-    }
-  
-    
-   public void ReanbleCanMove(){
-       canMove = true;
-   }
-
- 
-
-  
 }
 

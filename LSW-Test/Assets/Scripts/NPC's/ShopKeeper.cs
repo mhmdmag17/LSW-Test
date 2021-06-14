@@ -4,26 +4,30 @@ using UnityEngine;
 
 public class ShopKeeper : MonoBehaviour, ISpecialNPC
 {
-    // Start is called before the first frame update
-   [SerializeField] GameObject panel;
-   [SerializeField]  GameObject nextPanel;
+    UI_Manager uI_Manager;
+    GameObject _questionpanel,_nextPanel;
+      void Start()
+      {
+          uI_Manager = UI_Manager.Instance;
+          _questionpanel = uI_Manager.questionpanel;
+          _nextPanel = uI_Manager.shopPanel;
+      }
      public void DoSpecialThing(){
-panel.SetActive(true);
+          uI_Manager.ScaleUp(_questionpanel);
+
       }
    public void Yes()
     {
-        nextPanel.SetActive(true);
-         panel.SetActive(false);
+          uI_Manager.ScaleUp(_nextPanel);
+          uI_Manager.ScaleDown(_questionpanel);
+
     }
     public void No()
     {
-         nextPanel.SetActive(false);
-         panel.SetActive(false);
+          uI_Manager.ScaleDown(_nextPanel);
+          uI_Manager.ScaleDown(_questionpanel);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
+    
 }

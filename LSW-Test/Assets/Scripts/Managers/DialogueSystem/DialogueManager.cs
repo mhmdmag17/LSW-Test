@@ -1,34 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+
 
 public class DialogueManager : MonoBehaviour {
 
-	public TMP_Text nameText;
-	public TMP_Text  dialogueText;
-    	public TMP_Text  questionText;
-
-
-    public GameObject panel;
-    
-    public GameObject questionpanel;
-	//public Animator animator;
+	
+	UI_Manager uI_Manager;
 
 	private Queue<string> sentences;
      
-     Question question;
-	// Use this for initialization
+	 Question question;
+
 	void Start () {
 		sentences = new Queue<string>();
+		uI_Manager = UI_Manager.Instance;
 	}
 
 	public void StartDialogue (DialougeSystem dialogue)
 	{
-		panel.SetActive(true);
-
-		nameText.text = dialogue.name;
+	
+	uI_Manager.ScaleUp(uI_Manager.dialoguePanel);
+	uI_Manager.nameText.text = dialogue.name;
 
 		sentences.Clear();
 
@@ -59,10 +52,10 @@ question = dialogue.question;
 
 	IEnumerator TypeSentence (string sentence)
 	{
-		dialogueText.text = "";
+	uI_Manager.dialogueText.text = "";
 		foreach (char letter in sentence.ToCharArray())
 		{
-			dialogueText.text += letter;
+			uI_Manager.dialogueText.text += letter;
 			yield return null;
 		}
 	}
@@ -70,12 +63,12 @@ question = dialogue.question;
 	void EndDialogue()
 	{
        
-		panel.SetActive(false);
+		uI_Manager.ScaleDown(uI_Manager.dialoguePanel);
         if(question.text.Length > 0){
-questionText.text = question.text;
-            questionpanel.SetActive(true);
+        uI_Manager.questionText.text = question.text;
+          			uI_Manager.ScaleUp(uI_Manager.questionpanel);
         }else{
-			Player_Controller.Instance.ReanbleCanMove();
+			GameManager.Instance.EnableMoving();
 		}
 	}
     
